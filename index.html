@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Arshdeep! 🎉</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef);
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23fff" opacity="0.5"/></svg>') repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+        h1 {
+            font-size: 3em;
+            color: #ff4081;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .section {
+            margin: 30px 0;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .funny-wish {
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: #ff6b6b;
+        }
+        .special-message {
+            display: none;
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #333;
+        }
+        .why-special {
+            list-style: none;
+            padding: 0;
+            font-size: 1.2em;
+        }
+        .why-special li {
+            margin: 10px 0;
+            color: #e91e63;
+        }
+        button {
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #e91e63;
+        }
+        .countdown {
+            font-size: 1.5em;
+            color: #4caf50;
+        }
+        .gif {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #ff4081;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        .game {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+        .quiz-question {
+            margin: 10px 0;
+        }
+        .balloon {
+            display: inline-block;
+            width: 50px;
+            height: 70px;
+            background: #ff4081;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            margin: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+        .balloon::after {
+            content: '🎈';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 20px;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Birthday, Arshdeep! 🎂✨</h1>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        
+        <div class="section">
+            <p class="funny-wish">Arshdeep, on this November 15th, I'm wishing you something no one else would: A magical remote to fast-forward through traffic jams, a bottomless pit of your favorite snacks that never expire, and the superpower to make every selfie look like a pro photoshoot. Because you're the best part of my life, and you deserve a birthday that's as epic and hilarious as you are! 😜</p>
+            <img src="https://media.giphy.com/media/3o7TKz9bX9v8Z8Z8Z8/giphy.gif" alt="Birthday GIF" class="gif">
+        </div>
+        
+        <div class="section">
+            <h2>Why You're So Special to Me</h2>
+            <ul class="why-special">
+                <li>You're the laughter in my quiet days, turning ordinary moments into adventures.</li>
+                <li>Your smile could light up a blackout—seriously, it's that bright!</li>
+                <li>You're my go-to for the weirdest jokes, and you always top them with something even funnier.</li>
+                <li>Being your best friend feels like winning the lottery every day.</li>
+                <li>Arshdeep, you're not just special—you're the reason I believe in magic.</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Memory Lane: Our Best Moments</h2>
+            <div id="memory-slideshow">
+                <p id="memory-text">Loading a fun memory...</p>
+                <button onclick="nextMemory()">Next Memory</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <p>Ready for the super special wish that unfolds just for you? Click to start the adventure!</p>
+            <button onclick="startWish()">Begin the Wish Journey! 🎉</button>
+            <div id="wish-stages" class="special-message">
+                <div id="stage1" style="display: none;">
+                    <p>Stage 1: Arshdeep, you've always been the spark in my life...</p>
+                    <button onclick="nextStage(2)">Continue</button>
+                </div>
+                <div id="stage2" style="display: none;">
+                    <p>Stage 2: ...the one who makes everything better, even on the toughest days.</p>
+                    <button onclick="nextStage(3)">Keep Going</button>
+                </div>
+                <div id="stage3" style="display: none;">
+                    <p>Stage 3: Happy Birthday! May your year be filled with joy, laughter, and zero bad WiFi. I love you tons! 💖</p>
+                    <button onclick="launchConfetti()">Celebrate with Confetti!</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Play Some Games to Unlock a Surprise!</h2>
+            <div class="game">
+                <h3>Game 1: Birthday Trivia Quiz</h3>
+                <p>Answer these fun questions about you (or just guess for laughs)!</p>
+                <div id="quiz">
+                    <div class="quiz-question" id="q1">1. What's your go-to birthday treat? <input type="text" id="a1"> <button onclick="checkAnswer(1)">Submit</button></div>
+                    <div class="quiz-question" id="q2" style="display: none;">2. If you could teleport anywhere right now, where? <input type="text" id="a2"> <button onclick="checkAnswer(2)">Submit</button></div>
+                    <div class="quiz-question" id="q3" style="display: none;">3. What's the funniest thing we've done together? <input type="text" id="a3"> <button onclick="checkAnswer(3)">Submit</button></div>
+                    <div class="quiz-question" id="q4" style="display: none;">4. Your superpower? <input type="text" id="a4"> <button onclick="checkAnswer(4)">Submit</button></div>
+                    <div class="quiz-question" id="q5" style="display: none;">5. Best memory of us? <input type="text" id="a5"> <button onclick="checkAnswer(5)">Submit</button></div>
+                </div>
+                <p id="quiz-score">Score: 0/5</p>
+            </div>
+            
+            <div class="game">
+                <h3>Game 2: Balloon Popper</h3>
+                <p>Pop 10 balloons to reveal birthday messages!</p>
+                <div id="balloons"></div>
+                <p id="pop-count">Popped: 0/10</p>
+            </div>
+            
+            <div id="virtual-gift" style="display: none;">
+                <h3>Your Virtual Gift!</h3>
+                <p>🎁 Congratulations! You've unlocked: "Official Best Friend Forever Certificate" – Valid for unlimited laughs and adventures. Print it out and frame it! 😂</p>
+                <button onclick="playSong()">Play a Surprise Song</button>
+                <audio id="birthday-song" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" preload="none"></audio> <!-- Short free sound; replace if needed -->
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="countdown">
+                <p>Countdown to your next birthday: <span id="countdown-timer"></span></p>
+                <p>Fun fact: That's enough time to plan another epic adventure!</p>
+            </div>
+        </div>
+    </div>
+    
+    <canvas id="confetti-canvas"></canvas>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        let progress = 0;
+        const progressFill = document.getElementById('progress-fill');
+        function updateProgress() {
+            progress += 10;
+            progressFill.style.width = progress + '%';
+        }
+        
+        // Memory slideshow
+        const memories = [
+            "That time we laughed so hard at a silly joke, we couldn't stop!",
+            "Our late-night chats that turned into epic plans.",
+            "The day we discovered the best ice cream spot ever.",
+            "When you surprised me with the funniest meme.",
+            "Every moment with you feels like a celebration."
+        ];
+        let memoryIndex = 0;
+        document.getElementById('memory-text').textContent = memories[0];
+        function nextMemory() {
+            memoryIndex = (memoryIndex + 1) % memories.length;
+            document.getElementById('memory-text').textContent = memories[memoryIndex];
+            updateProgress();
+        }
+        
+        // Wish stages
+        function startWish() {
+            document.getElementById('stage1').style.display = 'block';
+            updateProgress();
+        }
+        function nextStage(stage) {
+            document.getElementById('stage' + (stage - 1)).style.display = 'none';
+            document.getElementById('stage' + stage).style.display = 'block';
+            updateProgress();
+        }
+        
+        // Quiz
+        let quizScore = 0;
+        function checkAnswer(q) {
+            // Simple check (you can customize answers)
+            quizScore++;
+            document.getElementById('quiz-score').textContent = Score: ${quizScore}/5;
+            document.getElementById('q' + q).style.display = 'none';
+            if (q < 5) document.getElementById('q' + (q + 1)).style.display = 'block';
+            else {
+                alert('Quiz complete! You scored ' + quizScore + '/5. Great job!');
+                checkGamesComplete();
+            }
+            updateProgress();
+        }
+        
+        // Balloon Popper
+        let popCount = 0;
+        const balloonsDiv = document.getElementById('balloons');
+        for (let i = 0; i < 10; i++) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.onclick = function() {
+                this.style.display = 'none';
+                popCount++;
+                document.getElementById('pop-count').textContent = Popped: ${popCount}/10;
+                if (popCount === 10) {
+                    alert('All balloons popped! You revealed: "May your days be as colorful as these balloons!"');
+                    checkGamesComplete();
+                }
+                updateProgress();
+            };
+            balloonsDiv.appendChild(balloon);
+        }
+        
+        function checkGamesComplete() {
+            if (quizScore >= 1 && popCount >= 10) { // Adjust thresholds if needed
+                document.getElementById('virtual-gift').style.display = 'block';
+            }
+        }
+        
+        function launchConfetti() {
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            updateProgress();
+        }
+        
+        function playSong() {
+            document.getElementById('birthday-song').play();
+        }
+        
+        // Countdown
+        function updateCountdown() {
+            const now = new Date();
+            const nextBirthday = new Date(now.getFullYear() + 1, 10, 15);
+            if (now > new Date(now.getFullYear(), 10, 15)) nextBirthday.setFullYear(now.getFullYear() + 1);
+            const diff = nextBirthday - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('countdown-timer').textContent = ${days} days and ${hours} hours!;
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+    </script>
+</body>
+</html>
